@@ -427,41 +427,6 @@
 						</execution>
 					</executions>
 				</plugin>
-				<!-- <plugin>
-					<groupId>com.github.siom79.japicmp</groupId>
-					<artifactId>japicmp-maven-plugin</artifactId>
-					<version>0.18.3</version>
-					<configuration>
-						<oldVersion>
-							<dependency>
-								<groupId>${project.groupId}</groupId>
-								<artifactId>${project.artifactId}</artifactId>
-								<version>${last.japicmp.compare.version}</version>
-								<type>${project.packaging}</type>
-							</dependency>
-						</oldVersion>
-						<newVersion>
-							<file>
-								<path>${project.build.directory}/${project.artifactId}-${project.version}.jar</path>
-							</file>
-						</newVersion>
-						<parameter>
-							<onlyModified>true</onlyModified>
-							<ignoreMissingClasses>true</ignoreMissingClasses>
-							<ignoreMissingClassesByRegularExpressions>
-						<ignoreMissingClassesByRegularExpression>javax.activation.*</ignoreMissingClassesByRegularExpression>
-					</ignoreMissingClassesByRegularExpressions>
-						</parameter>
-					</configuration>
-					<executions>
-						<execution>
-							<phase>verify</phase>
-							<goals>
-								<goal>cmp</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin> -->
 			</plugins>
 		</pluginManagement>
 	</build>
