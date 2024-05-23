@@ -209,21 +209,21 @@ public class ZipIRIMapper extends DefaultHandler implements OWLOntologyIRIMapper
         }
         IRI physicalIRI = IRI.create(baseIRI + name);
         String extension = name.substring(lastIndexOf);
-        if (".obo".equals(extension)) {
+        if (".obo".equalsIgnoreCase(extension)) {
             oboFileMap.put(name, physicalIRI);
         } else {
             try (InputStream in = file.getInputStream(e)) {
-                if (".ofn".equals(extension)) {
+                if (".ofn".equalsIgnoreCase(extension)) {
                     IRI logical = parseFSSFile(in);
                     if (logical != null) {
                         ontologyIRI2PhysicalURIMap.put(logical, physicalIRI);
                     }
-                } else if (".omn".equals(extension)) {
+                } else if (".omn".equalsIgnoreCase(extension)) {
                     IRI logical = parseManchesterSyntaxFile(in);
                     if (logical != null) {
                         ontologyIRI2PhysicalURIMap.put(logical, physicalIRI);
                     }
-                } else if (fileExtensions.contains(extension)) {
+                } else if (fileExtensions.contains(extension.toLowerCase())) {
                     IRI logical = parseFile(in);
                     if (logical != null) {
                         ontologyIRI2PhysicalURIMap.put(logical, physicalIRI);
