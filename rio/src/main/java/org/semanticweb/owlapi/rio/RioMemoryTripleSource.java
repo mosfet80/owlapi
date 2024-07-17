@@ -41,7 +41,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
-import org.eclipse.rdf4j.common.exception.RDF4JException;
 import org.eclipse.rdf4j.common.iteration.CloseableIteration;
 import org.eclipse.rdf4j.model.Model;
 import org.eclipse.rdf4j.model.Namespace;
@@ -114,7 +113,7 @@ public class RioMemoryTripleSource implements OWLOntologyDocumentSource {
      * source.
      */
     public RioMemoryTripleSource(
-        final CloseableIteration<Statement, ? extends RDF4JException> statements) {
+        final CloseableIteration<Statement> statements) {
         documentIRI = IRI.getNextDocumentIRI("rio-memory-triples:");
         statementIterator = new StatementIterator(statements);
     }
@@ -130,7 +129,7 @@ public class RioMemoryTripleSource implements OWLOntologyDocumentSource {
      * source.
      */
     public RioMemoryTripleSource(
-        final CloseableIteration<Statement, ? extends RDF4JException> statements,
+        final CloseableIteration<Statement> statements,
         final Map<String, String> namespaces) {
         this(statements);
         this.namespaces.putAll(namespaces);
@@ -188,9 +187,9 @@ public class RioMemoryTripleSource implements OWLOntologyDocumentSource {
 
     static final class StatementIterator implements Iterator<Statement> {
 
-        private final CloseableIteration<Statement, ? extends RDF4JException> statements;
+        private final CloseableIteration<Statement> statements;
 
-        StatementIterator(CloseableIteration<Statement, ? extends RDF4JException> statements) {
+        StatementIterator(CloseableIteration<Statement> statements) {
             this.statements = statements;
         }
 

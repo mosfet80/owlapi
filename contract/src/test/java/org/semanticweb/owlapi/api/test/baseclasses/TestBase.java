@@ -553,9 +553,13 @@ public abstract class TestBase extends DF {
             }
             format.setAddMissingTypes(true);
             if (logger.isTraceEnabled()) {
+                logger.trace("TestBase.roundTripOntology() ontology originally");
+                ont.axioms().forEach(ax -> logger.trace(ax.toString()));
+                logger.trace("Original document (begin) ================");
                 StringDocumentTarget targetForDebug = new StringDocumentTarget();
                 ont.saveOntology(format, targetForDebug);
                 logger.trace(targetForDebug.toString());
+                logger.trace("Original document (end) ==================");
             }
             ont.saveOntology(format, target);
             handleSaved(target, format);
@@ -565,6 +569,11 @@ public abstract class TestBase extends DF {
             if (logger.isTraceEnabled()) {
                 logger.trace("TestBase.roundTripOntology() ontology parsed");
                 ont2.axioms().forEach(ax -> logger.trace(ax.toString()));
+                logger.trace("Parsed document (begin) =================");
+                StringDocumentTarget targetForDebug = new StringDocumentTarget();
+                ont2.saveOntology(format, targetForDebug);
+                logger.trace(targetForDebug.toString());
+                logger.trace("Parsed document (end) ===================");
             }
             equal(ont, ont2);
             return ont2;
