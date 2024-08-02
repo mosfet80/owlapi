@@ -3,6 +3,8 @@ package org.semanticweb.owlapi.api.test.syntax;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.eclipse.rdf4j.rio.helpers.JSONLDSettings;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.semanticweb.owlapi.api.test.baseclasses.TestBase;
 import org.semanticweb.owlapi.apitest.TestFiles;
@@ -85,6 +87,7 @@ class IRITestCase extends TestBase {
     }
 
     @Test
+    @Disabled("The correct behaviour for JSON-LD 1.1 is to skip invalid data, including IRIs that start with a space. A warning should be logged. To get an exception instead you can set JSONLDSettings.EXCEPTION_ON_WARNING.")
     void shouldParseIRIAndSkipPrefixedSpaceJSONLD() {
         roundTrip(new RDFJsonLDDocumentFormat(), TestFiles.BAD_JSON_LD);
     }
