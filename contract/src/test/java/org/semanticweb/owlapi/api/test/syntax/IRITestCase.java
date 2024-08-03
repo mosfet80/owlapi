@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.eclipse.rdf4j.rio.helpers.JSONLDSettings;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.semanticweb.owlapi.api.test.baseclasses.TestBase;
 import org.semanticweb.owlapi.apitest.TestFiles;
@@ -25,6 +24,7 @@ import org.semanticweb.owlapi.io.UnparsableOntologyException;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLDocumentFormat;
 import org.semanticweb.owlapi.model.OWLOntology;
+import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLRuntimeException;
 
 class IRITestCase extends TestBase {
@@ -87,9 +87,30 @@ class IRITestCase extends TestBase {
     }
 
     @Test
-    @Disabled("The correct behaviour for JSON-LD 1.1 is to skip invalid data, including IRIs that start with a space. A warning should be logged. To get an exception instead you can set JSONLDSettings.EXCEPTION_ON_WARNING.")
-    void shouldParseIRIAndSkipPrefixedSpaceJSONLD() {
-        roundTrip(new RDFJsonLDDocumentFormat(), TestFiles.BAD_JSON_LD);
+    void shouldNotParseIRIAndSkipPrefixedSpaceJSONLD() {
+        // The correct behaviour for JSON-LD 1.1 is to skip invalid data, 
+        // including IRIs that start with a space. A warning should be logged. 
+        // To get an exception instead you can set JSONLDSettings.EXCEPTION_ON_WARNING.
+        // This test shows how to do that.
+        OWLDocumentFormat format = new RDFJsonLDDocumentFormat();
+        format.setParameter(JSONLDSettings.EXCEPTION_ON_WARNING, Boolean.TRUE);
+        roundTrip(format, TestFiles.BAD_JSON_LD);
+    }
+
+    @Test
+    void shouldParseIRIAndSkipPrefixedSpaceJSONLD() throws OWLOntologyCreationException {
+        // The correct behaviour for JSON-LD 1.1 is to skip invalid data, 
+        // including IRIs that start with a space. A warning should be logged. 
+        // To get an exception instead you can set JSONLDSettings.EXCEPTION_ON_WARNING.
+        // This test uses the default behaviour and shows which invalid data is ignored.
+        OWLDocumentFormat format = new RDFJsonLDDocumentFormat();
+        OWLOntology o = loadFrom(TestFiles.BAD_JSON_LD, format);
+        // Ignoring incorrect data, the ontology contains only a declaration axiom
+        OWLOntology o2 = m1.createOntology(o.getOntologyID().getOntologyIRI()
+            .get());
+        o2.add(df.getOWLDeclarationAxiom(df.getOWLAnnotationProperty(
+            "http://x.org/myprop")));
+        equal(o, o2);
     }
 
     @Test

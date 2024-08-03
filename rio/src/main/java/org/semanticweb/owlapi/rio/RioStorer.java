@@ -344,6 +344,7 @@ public class RioStorer extends AbstractOWLStorer {
                 JSONLDSettings.HIERARCHICAL_VIEW, JSONLDSettings.JSONLD_MODE,
                 JSONLDSettings.OPTIMIZE, JSONLDSettings.PRODUCE_GENERALIZED_RDF,
                 JSONLDSettings.USE_NATIVE_TYPES, JSONLDSettings.USE_RDF_TYPE,
+                JSONLDSettings.EXCEPTION_ON_WARNING,
                 BasicWriterSettings.BASE_DIRECTIVE,
                 BasicWriterSettings.CONVERT_RDF_STAR_TO_REIFICATION,
                 BasicWriterSettings.ENCODE_RDF_STAR, BasicWriterSettings.INLINE_BLANK_NODES,
