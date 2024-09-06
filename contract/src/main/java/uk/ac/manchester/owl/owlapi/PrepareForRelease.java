@@ -18,6 +18,7 @@ class PrepareForRelease {
         treat(newVersion, toReplace,
             "../osgidistribution/src/test/java/org/semanticweb/owlapi/api/test/VerifyVersionInfoIntegrationTestCase.java");
         treat(newVersion, toReplace, "../pom.xml");
+        treat(newVersion, toReplace, "../bom/pom.xml");
         treat(newVersion, toReplace, "../api/pom.xml");
         treat(newVersion, toReplace, "../impl/pom.xml");
         treat(newVersion, toReplace, "../tools/pom.xml");

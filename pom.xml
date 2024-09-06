@@ -47,7 +47,7 @@
 		<!-- The distribution module is a single-jar build of the whole OWL API. -->
 		<module>distribution</module>
 		<module>osgidistribution</module>
-		<!-- <module>benchmarks</module> -->
+		<module>bom</module>
 	</modules>
 
 
