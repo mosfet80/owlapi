@@ -24,6 +24,7 @@ import org.semanticweb.owlapi.api.test.baseclasses.TestBase;
 import org.semanticweb.owlapi.apitest.TestFiles;
 import org.semanticweb.owlapi.formats.FunctionalSyntaxDocumentFormat;
 import org.semanticweb.owlapi.formats.RDFXMLDocumentFormat;
+import org.semanticweb.owlapi.model.OWLLiteral;
 import org.semanticweb.owlapi.model.OWLOntology;
 
 class TestCornerCasesTestCase extends TestBase {
@@ -87,5 +88,12 @@ class TestCornerCasesTestCase extends TestBase {
         OWLOntology o = loadFrom(TestFiles.largeInteger, new FunctionalSyntaxDocumentFormat());
         assertTrue(saveOntology(o).toString().contains(INF));
         equal(o, roundTrip(o));
+    }
+
+    @Test
+    void testCompareWithLargeInteger() {
+        OWLLiteral smallInteger = df.getOWLLiteral(123);
+        OWLLiteral largeInteger = df.getOWLLiteral("149597870700", df.getIntegerOWLDatatype());
+        assertFalse(smallInteger.equals(largeInteger));
     }
 }
