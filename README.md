@@ -22,6 +22,31 @@ The following components are included:
 
 ## Release notes
 
+## 5.5.1 7 September 2024
+
+### Bug fixes:
+
+*    OBO serialisation illegal axiom annotation (#1093)
+*    Add Trix to list of BANNED_PARSERS in OWLAPI 4.X #1088
+*    Version5 OSGi fixes (#1098)
+*    Fix violations in declarations not reported #1094 #1046
+*    Fix Shared class expression causes extra triples in output #1109
+*    Fix #1112 force use of oboInOwl ns translating OBO IDs.
+*    Fix #1118 dependency updates
+*    Fix forced use of oboInOwl namespace when translating OBO IDs.
+*    Issue #1145: Upgrade to RDF4J 5.x
+*    Fix case sensitive extensions in ZipIRIMapper #1140
+*    Clarify "Entity not properly recognized" #1152
+*    jaxb-ap dropped in OWLAPI 5.1 causes failure running on Java 11 #1150
+*    Fix #1126 Handle exception when comparing integer literals.
+*    Remove org.openrdf.rio.RDFParserFactory #1125
+
+### Features:
+
+*    Allow arbitrary annotation properties as qualifier tags in OBO #1099
+*    Provide a BOM for owlapi #1148
+
+
 ## 5.5.0 14 January 2023
 
 ### Features:
