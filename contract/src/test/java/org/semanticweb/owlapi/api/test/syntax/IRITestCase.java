@@ -94,7 +94,7 @@ class IRITestCase extends TestBase {
         // This test shows how to do that.
         OWLDocumentFormat format = new RDFJsonLDDocumentFormat();
         format.setParameter(JSONLDSettings.EXCEPTION_ON_WARNING, Boolean.TRUE);
-        roundTrip(format, TestFiles.BAD_JSON_LD);
+        assertThrows(OWLRuntimeException.class, () -> roundTrip(format, TestFiles.BAD_JSON_LD));
     }
 
     @Test
