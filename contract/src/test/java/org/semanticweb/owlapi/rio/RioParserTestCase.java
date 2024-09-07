@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.semanticweb.owlapi.api.test.baseclasses.TestBase;
+import org.semanticweb.owlapi.apibinding.OWLManager;
+import org.semanticweb.owlapi.formats.NTriplesDocumentFormat;
 import org.semanticweb.owlapi.formats.RDFXMLDocumentFormat;
 import org.semanticweb.owlapi.formats.RioRDFXMLDocumentFormat;
 import org.semanticweb.owlapi.formats.RioRDFXMLDocumentFormatFactory;
@@ -15,6 +17,7 @@ import org.semanticweb.owlapi.io.StreamDocumentSource;
 import org.semanticweb.owlapi.model.OWLDocumentFormat;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
+import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import org.semanticweb.owlapi.rdf.rdfxml.parser.RDFXMLParser;
 
 /**
@@ -133,5 +136,13 @@ class RioParserTestCase extends TestBase {
         assertEquals(new RioRDFXMLDocumentFormat(), rioOntologyFormat);
         equal(owlapiOntologyPrimer, rioOntologyPrimer);
         assertEquals(4, rioOntologyPrimer.getAxiomCount());
+    }
+
+    @Test
+    void ensureNTripleWorksWhenJAXBNotInJRE()
+        throws OWLOntologyStorageException {
+        String nt = "_:Bc5b286a7X2Dabe6X2D4b50X2Daa2bX2D9e5c5d4d86c8 <http://www.w3.org/2000/01/rdf-schema#comment> \"test\" .";
+        OWLOntology owl = loadFrom(nt, new NTriplesDocumentFormat());
+        roundTrip(owl);
     }
 }
