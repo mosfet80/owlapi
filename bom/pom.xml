@@ -8,40 +8,46 @@
 	</parent>
 	<artifactId>owlapi-bom</artifactId>
 	<packaging>pom</packaging>
+	<version>5.5.1.1</version>
 	<name>OWLAPI :: BOM</name>
 	<description>OWLAPI Bill of Materials (BOM)</description>
 	<dependencyManagement>
 		<dependencies>
 			<!-- Core modules -->
 			<dependency>
-				<groupId>${project.groupId}</groupId>
+				<groupId>net.sourceforge.owlapi</groupId>
 				<artifactId>owlapi-api</artifactId>
-				<version>${project.version}</version>
+				<version>5.5.1</version>
 			</dependency>
 			<dependency>
-				<groupId>${project.groupId}</groupId>
+				<groupId>net.sourceforge.owlapi</groupId>
+				<artifactId>owlapi-apibinding</artifactId>
+				<version>5.5.1</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sourceforge.owlapi</groupId>
 				<artifactId>owlapi-impl</artifactId>
-				<version>${project.version}</version>
+				<version>5.5.1</version>
 			</dependency>
 			<dependency>
-				<groupId>${project.groupId}</groupId>
+				<groupId>net.sourceforge.owlapi</groupId>
 				<artifactId>owlapi-parsers</artifactId>
-				<version>${project.version}</version>
+				<version>5.5.1</version>
 			</dependency>
 			<dependency>
-				<groupId>${project.groupId}</groupId>
+				<groupId>net.sourceforge.owlapi</groupId>
 				<artifactId>owlapi-oboformat</artifactId>
-				<version>${project.version}</version>
+				<version>5.5.1</version>
 			</dependency>
 			<dependency>
-				<groupId>${project.groupId}</groupId>
+				<groupId>net.sourceforge.owlapi</groupId>
 				<artifactId>owlapi-tools</artifactId>
-				<version>${project.version}</version>
+				<version>5.5.1</version>
 			</dependency>
 			<dependency>
-				<groupId>${project.groupId}</groupId>
+				<groupId>net.sourceforge.owlapi</groupId>
 				<artifactId>owlapi-rio</artifactId>
-				<version>${project.version}</version>
+				<version>5.5.1</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
